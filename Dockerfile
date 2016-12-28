@@ -22,14 +22,15 @@ RUN curl -sSJL "https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sd
 
 env PATH /usr/local/google-cloud-sdk/bin:$PATH
 
-ARG NODE_VERSION=4.4.5
-ARG NPM_VERSION=2.14.5
-ARG CHROMEDRIVER_VERSION=2.25
+ARG NODE_VERSION=6.9.2
+ARG NPM_VERSION=3.10.9
+ARG YARN_VERSION=0.18.1
+ARG CHROMEDRIVER_VERSION=2.27
 ARG PHANTOMJS_VERSION=2.1.1
 
 RUN curl -sSJL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" -o /tmp/node-v$NODE_VERSION-linux-x64.tar.gz \
     && tar -xzf "/tmp/node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
-    && npm install --silent -g npm@"$NPM_VERSION" \
+    && npm install --silent -g npm@"$NPM_VERSION" yarn@"$YARN_VERSION"  \
     && rm -f "/tmp/node-v$NODE_VERSION-linux-x64.tar.gz"
 
 RUN curl -sSJL "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip" -o /tmp/chromedriver_linux64.zip \
