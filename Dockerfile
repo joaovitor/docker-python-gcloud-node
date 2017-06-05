@@ -22,10 +22,10 @@ RUN curl -sSJL "https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sd
 
 env PATH /usr/local/google-cloud-sdk/bin:$PATH
 
-ARG NODE_VERSION=6.9.2
-ARG NPM_VERSION=3.10.9
-ARG YARN_VERSION=0.18.1
-ARG CHROMEDRIVER_VERSION=2.27
+ARG NODE_VERSION=6.10.3
+ARG NPM_VERSION=3.10.10
+ARG YARN_VERSION=0.24.1
+ARG CHROMEDRIVER_VERSION=2.29
 ARG PHANTOMJS_VERSION=2.1.1
 
 RUN curl -sSJL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" -o /tmp/node-v$NODE_VERSION-linux-x64.tar.gz \
