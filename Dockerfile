@@ -1,14 +1,25 @@
 FROM python:2.7.12
 
-# Installing the 'apt-utils' package gets rid of the 'debconf: delaying package configuration, since apt-utils is not installed'
-# error message when installing any other package with the apt-get package manager.
-RUN apt-get -qq update \
-    && DEBIAN_FRONTEND=noninteractive \
-        apt-get -qq install -y \
-        zip \
-        unzip \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install updates and dependencies
+RUN apt-get -qq update && \
+    DEBIAN_FRONTEND=noninteractive \
+    apt-get install --no-install-recommends -y -q \
+    bzip2 \
+    xz-utils \
+    curl \
+    zip \
+    unzip \
+    build-essential \
+    git \
+    ca-certificates \
+    libkrb5-dev \
+    imagemagick \
+    netbase && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Default to UTF-8 file.encoding
+ENV LANG C.UTF-8
 
 RUN curl -sSJL "https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.zip" -o /tmp/google-cloud-sdk.zip \
     && unzip -q /tmp/google-cloud-sdk.zip -d /usr/local \
@@ -18,7 +29,7 @@ RUN curl -sSJL "https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sd
         --path-update=true \
         --bash-completion=true \
         --rc-path=/root/.bashrc \
-        --additional-components app app-engine-python
+        --additional-components app-engine-python app-engine-java
 
 env PATH /usr/local/google-cloud-sdk/bin:$PATH
 
