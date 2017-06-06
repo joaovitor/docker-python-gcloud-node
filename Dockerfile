@@ -29,7 +29,7 @@ RUN curl -sSJL "https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sd
         --path-update=true \
         --bash-completion=true \
         --rc-path=/root/.bashrc \
-        --additional-components app-engine-python app-engine-java
+        --additional-components app-engine-python app-engine-java beta
 
 env PATH /usr/local/google-cloud-sdk/bin:$PATH
 

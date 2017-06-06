@@ -17,7 +17,7 @@ Base image with:
 
 ## Build the image
 ```
-docker build -t joaovitor/python-gcloud-node:v4 .
+docker build -t joaovitor/python-gcloud-node:v5 .
 ```
 
 ## Push the image
